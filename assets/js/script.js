@@ -1,5 +1,3 @@
-// https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid=58adba1842bb26530b9045ac5fb56baf
-
 // my API key 58adba1842bb26530b9045ac5fb56baf
 
 var searchFormEl = document.querySelector("#searchForm");
@@ -18,7 +16,7 @@ var formSubmitHandler = function (event) {
     }
 };
 var getWeatherConditions = function () {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf";
     fetch(apiUrl).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
