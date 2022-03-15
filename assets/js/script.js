@@ -2,28 +2,36 @@
 
 // my API key 58adba1842bb26530b9045ac5fb56baf
 
+var searchFormEl = document.querySelector("#searchForm");
 var cityInputEl = document.querySelector("#cityName");
 var searchBtn = document.querySelector(".btn");
 
-// var formSubmitHandler = function(event) {
-//     event.preventDefault();
-//     var cityName = cityInputEl.value.trim();
+var formSubmitHandler = function (event) {
+    event.preventDefault();
+    console.log(event);
+    var cityName = cityInputEl.value.trim();
+    if (cityName) {
+        getWeatherConditions(cityName);
+        cityInputEl.value = "";
+    } else {
+        alert("Please enter a city name!");
+    }
+};
+var getWeatherConditions = function () {
+    var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf";
+    fetch(apiUrl).then(function (response) {
+        response.json().then(function (data) {
+            console.log(data);
+        });
+    });
+};
 
-//     if (cityName) {
-        // getWeatherConditions(cityName);
-//     }
-// }
-
-fetch("http://api.openweathermap.org/data/2.5/forecast?q=paris&appid=58adba1842bb26530b9045ac5fb56baf")
-.then(function (response) {
-    console.log(response);
-})
 // var getWeatherConditions = function () {
 //     // format the api url
 //     var apiUrl = ("http://api.openweathermap.org/data/2.5/forecast?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf");
 
 //     fetch(apiUrl)
-//     .then(function (response) {
+//     .then(function(response) {
 //         if (response.ok) {
 //             console.log(reponse);
 //             response.json().then(function (data) {
@@ -37,7 +45,7 @@ fetch("http://api.openweathermap.org/data/2.5/forecast?q=paris&appid=58adba1842b
 //     .catch(function(error) {
 //         alert("Unable to connect to OpenWeather");
 //     });
-   
+
 // };
 
-// searchBtn.addEventListener("click", getWeatherConditions);
+searchFormEl.addEventListener("submit", formSubmitHandler);
