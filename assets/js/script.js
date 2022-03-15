@@ -2,7 +2,12 @@
 
 var searchFormEl = document.querySelector("#searchForm");
 var cityInputEl = document.querySelector("#cityName");
-var searchBtn = document.querySelector(".btn");
+var currentWeatherEl = document.querySelector(".container");
+// var cityNameEl = document.getElementById("cityName");
+// var cityTempEl = document.getElementById("cityTemp");
+// var cityHumidityEl = document.getElementById("cityHumidity");
+// var cityWindEl = document.getElementById("cityWindSpeed");
+// var cityUVEl = document.getElementById("cityUV");
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
@@ -16,13 +21,19 @@ var formSubmitHandler = function (event) {
     }
 };
 var getWeatherConditions = function () {
-    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf";
     fetch(apiUrl).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
+            document.getElementById("cityName").textContent = response.main.name + " " + moment().format("dddd, MMMM Do, YYYY");
+            document.getElementById("cityTemp").textContent = "Temperature: " + response.main.temp + " F";
+            document.getElementById("cityHumidity").textContent = "Humidity: " + response.main.humidity + "%";
+            document.getElementById("cityWindSpeed").textContent = "Wind Speed: " + response.wind.speed + " MPH";
         });
     });
 };
+
+// onecall?lat={lat}&lon={lon}   http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
 // var getWeatherConditions = function () {
 //     // format the api url
