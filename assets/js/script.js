@@ -25,7 +25,7 @@ var getWeatherConditions = function () {
     fetch(apiUrl).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
-            document.getElementById("cityName").textContent = response.main.name + " " + moment().format("dddd, MMMM Do, YYYY");
+            document.getElementById("cityName").textContent = response.name + " " + moment().format("dddd, MMMM Do, YYYY");
             document.getElementById("cityTemp").textContent = "Temperature: " + response.main.temp + " F";
             document.getElementById("cityHumidity").textContent = "Humidity: " + response.main.humidity + "%";
             document.getElementById("cityWindSpeed").textContent = "Wind Speed: " + response.wind.speed + " MPH";
