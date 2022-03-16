@@ -36,11 +36,30 @@ var getWeatherConditions = function () {
     fetch(apiUrl2).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
-            var city = document.createElement("h2").textContent = data.name
-            var temp = document.createElement("p").textContent = "Temperature: " + data.main.temp + " F";
-            var humidity = document.createElement("p").textContent = "Humidity: " + data.main.humidity + "%";
-            var wind = document.createElement("p").textContent = "Wind Speed: " + data.wind.speed + " MPH";
-            fiveDayEl.append(city, temp, humidity, wind);
+            document.getElementById("dayOneCity").textContent = data.city.name + "  " + moment().format("MMM Do YYYY");
+            document.getElementById("dayOneTemp").textContent = "Temperature: " + data.list[0].main.temp + " F";
+            document.getElementById("dayOneHumid").textContent = "Humidity: " + data.list[0].main.humidity + "%";
+            document.getElementById("dayOneWind").textContent = "Wind Speed: " + data.list[0].wind.speed + " MPH";
+
+            document.getElementById("dayTwoCity").textContent = data.city.name + "  " + moment().format("MMM Do YYYY");
+            document.getElementById("dayTwoTemp").textContent = "Temperature: " + data.list[1].main.temp + " F";
+            document.getElementById("dayTwoHumid").textContent = "Humidity: " + data.list[1].main.humidity + "%";
+            document.getElementById("dayTwoWind").textContent = "Wind Speed: " + data.list[1].wind.speed + " MPH";
+
+            document.getElementById("dayTwoCity").textContent = data.city.name + "  " + moment().format("MMM Do YYYY");
+            document.getElementById("dayTwoTemp").textContent = "Temperature: " + data.list[2].main.temp + " F";
+            document.getElementById("dayTwoHumid").textContent = "Humidity: " + data.list[2].main.humidity + "%";
+            document.getElementById("dayTwoWind").textContent = "Wind Speed: " + data.list[2].wind.speed + " MPH";
+
+            document.getElementById("dayTwoCity").textContent = data.city.name + "  " + moment().format("MMM Do YYYY");
+            document.getElementById("dayTwoTemp").textContent = "Temperature: " + data.list[3].main.temp + " F";
+            document.getElementById("dayTwoHumid").textContent = "Humidity: " + data.list[3].main.humidity + "%";
+            document.getElementById("dayTwoWind").textContent = "Wind Speed: " + data.list[3].wind.speed + " MPH";
+
+            document.getElementById("dayTwoCity").textContent = data.city.name + "  " + moment().format("MMM Do YYYY");
+            document.getElementById("dayTwoTemp").textContent = "Temperature: " + data.list[4].main.temp + " F";
+            document.getElementById("dayTwoHumid").textContent = "Humidity: " + data.list[4].main.humidity + "%";
+            document.getElementById("dayTwoWind").textContent = "Wind Speed: " + data.list[4].wind.speed + " MPH";
         })
         
     })

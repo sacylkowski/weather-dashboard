@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Weather Dashboard</title>
 </head>
@@ -38,13 +39,39 @@
           </ul>
       </div>
     </div>
-    <div class="row futureConditions">
-        <div id="dayOne"></div>
-        <div id="dayTwo"></div>
-        <div id="dayThree"></div>
-        <div id="dayFour"></div>
-        <div id="dayFive"></div>
-    </div>
+    <section class="row justify-content-around futureConditions">
+        <span class="col-12 col-lg-2" id="dayOne">
+            <h2 id="dayOneCity"></h2>
+            <p id="dayOneTemp"></p>
+            <p id="dayOneHumid"></p>
+            <p id="dayOneWind"></p>
+        </span>
+
+        <span class="col-12 col-lg-2" id="dayTwo">
+            <h2 id="dayTwoCity"></h2>
+            <p id="dayTwoTemp"></p>
+            <p id="dayTwoHumid"></p>
+            <p id="dayTwoWind"></p>
+        </span>
+        <span class="col-12 col-lg-2" id="dayThree">
+            <h2 id="dayThreeCity"></h2>
+            <p id="dayThreeTemp"></p>
+            <p id="dayThreeHumid"></p>
+            <p id="dayThreeWind"></p>
+        </span>
+        <span class="col-12 col-lg-2" id="dayFour">
+            <h2 id="dayFourCity"></h2>
+            <p id="dayFourTemp"></p>
+            <p id="dayFourHumid"></p>
+            <p id="dayFourWind"></p>
+        </span>
+        <span class="col-12 col-lg-2" id="dayFive">
+            <h2 id="dayFiveCity"></h2>
+            <p id="dayFiveTemp"></p>
+            <p id="dayFiveHumid"></p>
+            <p id="dayFiveWind"></p>
+        </span>
+    </section>
   </main>
   <footer>
     <div>
