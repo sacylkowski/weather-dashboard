@@ -26,6 +26,7 @@ var getWeatherConditions = function () {
     fetch(apiUrl).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
+            document.getElementById("cityIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.weather.icon + ".png");
             document.getElementById("cityNameMain").textContent = data.name + "   " + moment().format("dddd, MMMM Do, YYYY");
             document.getElementById("cityTemp").textContent = "Temperature: " + data.main.temp + " F";
             document.getElementById("cityHumidity").textContent = "Humidity: " + data.main.humidity + "%";
