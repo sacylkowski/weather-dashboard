@@ -12,7 +12,7 @@ var getWeatherConditions = function (event) {
     var cityName = cityInputEl.value.trim();
     if (cityName) {
 
-        var apiUrlGeo = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf";
+        var apiUrlGeo = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf";
         fetch(apiUrlGeo).then(function (response) {
             return response.json().then(function (data) {
                 console.log(data);
