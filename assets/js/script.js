@@ -4,8 +4,7 @@
 
 var searchFormEl = document.querySelector("#searchForm");
 var cityInputEl = document.querySelector("#cityName");
-var currentWeatherEl = document.querySelector(".container");
-var fiveDayEl = document.querySelector(".futureConditions");
+var cityUV = document.querySelectorAll("#cityUV");
 
 
 // var formSubmitHandler = function (event) {
@@ -28,15 +27,30 @@ var getWeatherConditions = function (event) {
 
     var apiUrlGeo = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf";
     fetch(apiUrlGeo).then(function (response) {
-        response.json().then(function (data) {
+        return response.json().then(function (data) {
             console.log(data);
             var lat = data[0].lat
             var lon = data[0].lon
 
-            var apiUrlOneCal = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "=&appid=58adba1842bb26530b9045ac5fb56baf";
+            var apiUrlOneCal = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=58adba1842bb26530b9045ac5fb56baf";
             fetch(apiUrlOneCal).then(function (response) {
-                response.json().then(function (data) {
+                return response.json().then(function (data) {
                     console.log(data);
+                    document.getElementById("dayOneUV").textContent = "UV Index: " + data.daily[0].uvi;
+                    document.getElementById("dayTwoUV").textContent = "UV Index: " + data.daily[1].uvi;
+                    document.getElementById("dayThreeUV").textContent = "UV Index: " + data.daily[2].uvi;
+                    document.getElementById("dayFourUV").textContent = "UV Index: " + data.daily[3].uvi;
+                    document.getElementById("dayFiveUV").textContent = "UV Index: " + data.daily[4].uvi;
+                    cityUV.textContent = "UV Index: " + data.current.uvi;
+                    console.log(cityUV);
+                    var uVI = parseInt(data.current.uvi);
+                    if (uVI <= 2.9) {
+                        cityUV.classList.add("favorable");
+                    } else if (uVI <= 5.9) {
+                        cityUV.classList.add("moderate");
+                    } else if (uVI >= 6) {
+                        cityUV.classList.add("severe");
+                    }
                 })
             })
 
@@ -47,7 +61,7 @@ var getWeatherConditions = function (event) {
 
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf" + "&units=imperial";
     fetch(apiUrl).then(function (response) {
-        response.json().then(function (data) {
+        return response.json().then(function (data) {
             console.log(data);
             document.getElementById("cityIcon").classList.remove("hide");
             document.getElementById("cityIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
@@ -59,7 +73,7 @@ var getWeatherConditions = function (event) {
     });
     var apiUrl2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf" + "&units=imperial";
     fetch(apiUrl2).then(function (response) {
-        response.json().then(function (data) {
+       return response.json().then(function (data) {
             console.log(data);
             
             document.getElementById("dayOneCity").textContent = data.city.name;
