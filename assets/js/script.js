@@ -8,18 +8,23 @@ var currentWeatherEl = document.querySelector(".container");
 var fiveDayEl = document.querySelector(".futureConditions");
 
 
-var formSubmitHandler = function (event) {
+// var formSubmitHandler = function (event) {
+//     event.preventDefault();
+//     console.log(event);
+//     var cityName = cityInputEl.value.trim();
+//     if (cityName) {
+//         getWeatherConditions(cityName);
+//         cityInputEl.value = "";
+//     } else {
+//         alert("Please enter a city name!");
+//     }
+// };
+var getWeatherConditions = function (event) {
     event.preventDefault();
     console.log(event);
+
     var cityName = cityInputEl.value.trim();
-    if (cityName) {
-        getWeatherConditions(cityName);
-        cityInputEl.value = "";
-    } else {
-        alert("Please enter a city name!");
-    }
-};
-var getWeatherConditions = function () {
+    
 
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf" + "&units=imperial";
     fetch(apiUrl).then(function (response) {
@@ -86,4 +91,4 @@ var getWeatherConditions = function () {
 //     .catch(function(error) {
 //         alert("Unable to connect to OpenWeather");
 
-searchFormEl.addEventListener("submit", formSubmitHandler);
+searchFormEl.addEventListener("submit", getWeatherConditions);
