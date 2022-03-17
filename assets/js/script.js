@@ -24,7 +24,26 @@ var getWeatherConditions = function (event) {
     console.log(event);
 
     var cityName = cityInputEl.value.trim();
+    if (cityName) {
+
+    var apiUrlGeo = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf";
+    fetch(apiUrlGeo).then(function (response) {
+        response.json().then(function (data) {
+            console.log(data);
+            var lat = data.lat
+            var lon = data.lon
+
+            var apiUrlOneCal = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "=&appid=58adba1842bb26530b9045ac5fb56baf";
+            fetch(apiUrlOneCal).then(function (response) {
+                response.json().then(function (data) {
+                    console.log(data);
+                })
+            })
+
+        })
+    });
     
+
 
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl.value + "&appid=58adba1842bb26530b9045ac5fb56baf" + "&units=imperial";
     fetch(apiUrl).then(function (response) {
@@ -45,7 +64,7 @@ var getWeatherConditions = function (event) {
             
             document.getElementById("dayOneCity").textContent = data.city.name;
             document.getElementById("dayOneIcon").classList.remove("hide");
-            document.getElementById("dayOneIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[0].weather.icon + ".png");
+            document.getElementById("dayOneIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png");
             document.getElementById("dayOneDate").textContent = data.list[0].dt_txt;
             document.getElementById("dayOneTemp").textContent = "Temperature: " + data.list[0].main.temp + " F";
             document.getElementById("dayOneHumid").textContent = "Humidity: " + data.list[0].main.humidity + "%";
@@ -53,7 +72,7 @@ var getWeatherConditions = function (event) {
 
             document.getElementById("dayTwoCity").textContent = data.city.name;
             document.getElementById("dayTwoIcon").classList.remove("hide");
-            document.getElementById("dayTwoIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[1].weather.icon + ".png");
+            document.getElementById("dayTwoIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[1].weather[0].icon + ".png");
             document.getElementById("dayTwoDate").textContent = data.list[1].dt_txt;
             document.getElementById("dayTwoTemp").textContent = "Temperature: " + data.list[1].main.temp + " F";
             document.getElementById("dayTwoHumid").textContent = "Humidity: " + data.list[1].main.humidity + "%";
@@ -61,7 +80,7 @@ var getWeatherConditions = function (event) {
 
             document.getElementById("dayThreeCity").textContent = data.city.name;
             document.getElementById("dayThreeIcon").classList.remove("hide");
-            document.getElementById("dayThreeIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[2].weather.icon + ".png");
+            document.getElementById("dayThreeIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[2].weather[0].icon + ".png");
             document.getElementById("dayThreeDate").textContent = data.list[2].dt_txt;
             document.getElementById("dayThreeTemp").textContent = "Temperature: " + data.list[2].main.temp + " F";
             document.getElementById("dayThreeHumid").textContent = "Humidity: " + data.list[2].main.humidity + "%";
@@ -69,7 +88,7 @@ var getWeatherConditions = function (event) {
 
             document.getElementById("dayFourCity").textContent = data.city.name;
             document.getElementById("dayFourIcon").classList.remove("hide");
-            document.getElementById("dayFourIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[3].weather.icon + ".png");
+            document.getElementById("dayFourIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[3].weather[0].icon + ".png");
             document.getElementById("dayFourDate").textContent = data.list[3].dt_txt;
             document.getElementById("dayFourTemp").textContent = "Temperature: " + data.list[3].main.temp + " F";
             document.getElementById("dayFourHumid").textContent = "Humidity: " + data.list[3].main.humidity + "%";
@@ -77,7 +96,7 @@ var getWeatherConditions = function (event) {
 
             document.getElementById("dayFiveCity").textContent = data.city.name;
             document.getElementById("dayFiveIcon").classList.remove("hide");
-            document.getElementById("dayFiveIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[4].weather.icon + ".png");
+            document.getElementById("dayFiveIcon").setAttribute("src", "https://openweathermap.org/img/w/" + data.list[4].weather[0].icon + ".png");
             document.getElementById("dayFiveDate").textContent = data.list[4].dt_txt;
             document.getElementById("dayFiveTemp").textContent = "Temperature: " + data.list[4].main.temp + " F";
             document.getElementById("dayFiveHumid").textContent = "Humidity: " + data.list[4].main.humidity + "%";
@@ -85,10 +104,11 @@ var getWeatherConditions = function (event) {
         })
         
 
-    })
+    })} else {
+    alert("Please enter a city name!");
 
 };
 //     .catch(function(error) {
 //         alert("Unable to connect to OpenWeather");
-
+}
 searchFormEl.addEventListener("submit", getWeatherConditions);
