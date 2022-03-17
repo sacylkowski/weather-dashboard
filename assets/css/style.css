@@ -120,20 +120,6 @@ p {
     display: none;
 }
 
-footer {
-    background-color: lightsalmon;
-    color: var(--primary);
-    width: 100%;
-    padding: 25px;
-    font-size: 18px;
-    font-family: "IBM Plex Sans", sans-serif;
-    display: flex;
-    flex-wrap: wrap;
-    position: absolute;
-    bottom: 0;
-}
-
-/* CARDS */
 .card {
   margin: 0 0 20px 0;
   border: 3px solid var(--dark);
@@ -151,17 +137,11 @@ footer {
   padding: 2.5%;
 }
 
-/* FORM */
-.form-label,
 .form-input,
 .form-textarea {
   display: block;
 }
 
-.form-label {
-  font-size: 1.1rem;
-  margin: 0 0 0 10px;
-}
 
 .form-input {
   width: 100%;
@@ -172,7 +152,6 @@ footer {
   border-radius: var(--border-radius);
 }
 
-/* HEIGHT / WIDTH UTILS */
 .min-100-vh {
   min-height: 100vh;
 }
@@ -181,7 +160,6 @@ footer {
   min-width: 100vw;
 }
 
-/* FLEX CONTENT */
 .flex-row {
   display: flex;
   flex-wrap: wrap;
